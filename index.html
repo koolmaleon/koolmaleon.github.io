@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Koolmaleon</title>
+  <meta name="author" content="Koolma Leon">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Koolmaleon"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Koolmaleon" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Koolmaleon</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-26T15:43:40.000Z"><a href="/2015/09/26/Work-with-Terminal-on-your-Mac/">2015-09-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/26/Work-with-Terminal-on-your-Mac/">Work with Terminal on your Mac</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Yesterday I restored my Mac to factory, because I felt I must have messed up something for I had been trying out a lot of fancy stuffs with <code>sudo</code> while I was not sure what those were. Besides, my girlfriend got a new Mac recently, so I planed to go through the set-up process and then teach her with confidence. Isn’t that sweet of me? XD</p>
+<h1 id="Apps_Recommendation_Before_Setting-up_Terminal">Apps Recommendation Before Setting-up Terminal</h1><p>Well, before setting up terminal, I have some subjective recommendations for Apps. I think these Apps helps a lot in using Mac in a programmer’s way.</p>
+<h2 id="Alfred"><a href="https://www.alfredapp.com/" target="_blank" rel="external">Alfred</a></h2><p>Alfred is a substitution, or I should say, an upgradation for Spotlight. With Alfred, you can easily open apps, find files, do web searches and more with commands. Not much to say, just try it.</p>
+<h2 id="iTerm2"><a href="http://www.iterm2.com/" target="_blank" rel="external">iTerm2</a></h2><p>This is a substitution for the original Terminal shipped with ths Mac OS. I didn’t do much investigation on this, because I simply use it as a substitution for <code>tmux</code>. In a nutshell, you can create tabs, split screens and switch between these windows with friendly shortcuts.</p>
+<h1 id="Set_up_your_terminal">Set up your terminal</h1><p>Now try to use Alfred to start iTerm, and let’s start setting up our terminal!</p>
+<h2 id="Homebrew"><a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a></h2><p>Homebrew can be seen as the <code>apt-get</code> in Linux systems, that is, a package manager. Not very much to say, install it with the following command, and <code>sudo</code> if necessary:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>There is also another package manager often used: <code>wget</code>. So we install it together with homebrew.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">homebrew install wget</span><br></pre></td></tr></table></figure></p>
+<h2 id="Zshell">Zshell</h2><p>Zshell is said to be the most powerful shell ever. I just believed this saying. Zshell is shipped with the original Mac OS, so all we need to do is turn it on, and set it up with some magic. Thanks to <a href="https://github.com/robbyrussell" target="_blank" rel="external">robbyrussell</a> who created <b>oh-my-zsh</b>, which greatly lead us out of the mess of setting up zshell.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chsh <span class="operator">-s</span> /bin/zsh</span><br><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure></p>
+<h1 id="Go_with_Vim">Go with Vim</h1><p>I think if you’re interested in Vim, then there’s no need to introduce about it. Or if you’re not interested, then I won’t even recommend this for you.</p>
+<h2 id="MacVim">MacVim</h2><p>The original vim, and also the vim you can get from homebrew, are not perfectly supported by a lot of powerful plugins, for example, YouCompleteMe. So, it’s highly suggested that you install <a href="http://www.macupdate.com/app/mac/25988/macvim" target="_blank" rel="external">MacVim</a>. Don’t worry about the rumors that you cannot use vim in terminal, the fact is that it works perfectly well.</p>
+<p>Install MacVim, then add this line to you shell resource file(<code>~/.bashrc</code> for bash, <code>~/.zshrc</code> for zsh, and so on):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> vim=<span class="string">'/Applications/MacVim.app/Contents/MacOS/Vim'</span></span><br></pre></td></tr></table></figure></p>
+<p>Save, load it(<code>source ~/.zshrc</code>), and check the version of the vim(<code>vim --version</code>). Make sure the version is 7.4+, or else you’re not doing right.</p>
+<h2 id="Often-used_configurations_for_Vim">Often-used configurations for Vim</h2><p>Vim is powerful and highly-customizable. You may spend a lot of time fine-tuning it, looking for plugins and even writing you own plugins. Here I only list some of the most basic configurations of Vim, which, I hope, will lead you to the very beginning of exploiting the unlimited power of Vim.<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> number              " show <span class="keyword">line</span> number <span class="keyword">in</span> front of each <span class="keyword">line</span></span><br><span class="line"><span class="keyword">set</span> hls                 " highlight matched pattern when searching</span><br><span class="line"><span class="keyword">set</span> smartindent         " enable smart indentation</span><br><span class="line"><span class="keyword">set</span> autoindent          " enable auto indentation when you add a new <span class="keyword">line</span></span><br><span class="line"><span class="keyword">set</span> softtabstop=4       " let softtab equals four spaces</span><br><span class="line"><span class="keyword">set</span> tabstop=4           " let <span class="keyword">tab</span> equals four spaces</span><br><span class="line"><span class="keyword">set</span> shiftwidth=4        " let the code-indentation to four spaces</span><br><span class="line"><span class="keyword">set</span> expandtab           " <span class="keyword">expand</span> <span class="keyword">tab</span> into spaces</span><br><span class="line"><span class="keyword">set</span> encoding=utf-8      " <span class="keyword">open</span> <span class="keyword">file</span> <span class="keyword">as</span> encoded <span class="keyword">in</span> utf-8 <span class="keyword">if</span> <span class="keyword">no</span> encoding implied</span><br><span class="line"><span class="keyword">set</span> fileencoding=utf-8  " <span class="keyword">save</span> <span class="keyword">file</span> <span class="keyword">as</span> encoded <span class="keyword">in</span> utf-8</span><br></pre></td></tr></table></figure></p>
+<p>Note: contents after <code>&quot;</code> are comments.</p>
+<h2 id="Vundle"><a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">Vundle</a></h2><p>Vundle is the plugin manager for vim, through which you can add more functions into Vim.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></table></figure></p>
+<p>According to the instructions of the project’s README, you need to add these following lines into <code>~/.vimrc</code>:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">set</span> nocompatible</span><br><span class="line">filetype <span class="keyword">off</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.vim/bundle/Vundle.vim</span><br><span class="line"><span class="keyword">call</span> vundle#<span class="keyword">begin</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">Plugin</span> <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> vundle#<span class="keyword">end</span>()</span><br><span class="line">filetype <span class="keyword">plugin</span> indent <span class="keyword">on</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Recommended_Plugins">Recommended Plugins</h2><p>Plugins for Vim are like equipments for warriors, without which, their power will be greatly weakened and their potential unexploited. Here, I just recommend some plugins I use, and I will only briefly introduce them. For new-comers to Vim, the basic operations and commands should be mastered before trying out these powerful extensions.</p>
+<ul>
+<li><a href="http://valloric.github.io/YouCompleteMe/" target="_blank" rel="external">YouCompleteMe</a>: “YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim.”, as said in the project’s homepage.</li>
+<li><a href="https://github.com/scrooloose/syntastic" target="_blank" rel="external">Syntastic</a>: Runtime syntax checker.</li>
+<li><a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="external">NerdTree</a>: Powerful sidebar for working space and file management.</li>
+<li><a href="https://github.com/majutsushi/tagbar" target="_blank" rel="external">Tagbar</a>: Powerful sidebar for tags, functions, and classes navigation.</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-23T08:00:01.000Z"><a href="/2015/09/23/Caffe-Hacking-Diary-Dependencies/">2015-09-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/23/Caffe-Hacking-Diary-Dependencies/">Caffe-Hacking Diary: Dependencies</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><i>Since I started working in the field of deep learning this summer, I’ve been using the most famous deep learning framework – <a href="http://caffe.berkeleyvision.org" target="_blank" rel="external">Caffe</a>. However, due to the urgent needs of developing, I didn’t have time to thoroughly read the docs and source codes, hence didn’t have a thorough understanding of the framework. Recently I started to hack into Caffe and create some custom layers. Without enough understanding of the framework, I think it’s hard to write efficient and bug-less code, so I decided to learn Caffe as if I haven’t learned it at all. This Diary will be the notes for my learning.</i></p>
+<p>Caffe depends on several libraries, with some of which I’m not very familiar. Therefore, I’ll put down some notes on these libraries for future reference.</p>
+<h1 id="BLAS">BLAS</h1><p><a href="http://www.netlib.org/blas" target="_blank" rel="external">BLAS</a>(Basic Linear Algebra Subprograms) is a free-licensed open-source project started from I-don’t-know-when. It provides a lot of handful functions for basic linear algebra operations, for example, inner product, matrix multiplication, but nothing more complex. There’re three versions of BLAS you can use in Caffe: <a href="http://math-atlas.sourceforge.net" target="_blank" rel="external">ATLAS</a>, <a href="http://www.openblas.net" target="_blank" rel="external">OpenBLAS</a> and <a href="https://software.intel.com/en-us/intel-mkl" target="_blank" rel="external">Intel MKL</a>. I did some test on the ATLAS shipped with Ubuntu LTS 14.04, and its performance was suprisingly far <b>worse</b> than for-loop with <code>-O2</code> compiling flag, so I don’t really understand why Caffe uses it.</p>
+<h1 id="Protocol_Buffer">Protocol Buffer</h1><p><a href="http://developers.google.com/protocol-buffers/" target="_blank" rel="external"><code>protobuf</code></a> is developed by Google, and can be seen as a substitute for <code>json</code> or <code>xml</code> in C++. Neural networks are defined in this format in Caffe models.</p>
+<h1 id="GLOG">GLOG</h1><p><a href="http://code.google.com/p/google-glog/" target="_blank" rel="external">GLOG</a> is a logging library for C++, developed by Google. The following codes you see in Caffe’s source code: <code>LOG(INFO)</code>, <code>CHECK_EQ</code>, are GLOG functions. Notably, you may see <code>GLOG_logtostderr=1</code> in front of a command line in some shell scripts, which is actually setting environment variables for GLOG before the program starts.</p>
+<h1 id="GFlags">GFlags</h1><p><a href="http://gflags.github.io/gflags" target="_blank" rel="external">GFlags</a> is <b>again</b> developed by Google, and is said to be a better substitute for <code>getopt()</code>.</p>
+<h1 id="HDF5,_LevelDB,_Snappy,_LMDB">HDF5, LevelDB, Snappy, LMDB</h1><p><a href="http://www.hdfgroup.org/HDF5" target="_blank" rel="external">HDF5</a>, <a href="http://leveldb.org" target="_blank" rel="external">LevelDB</a>, <a href="http://google.github.io/snappy" target="_blank" rel="external">Snappy</a>, and <a href="http://symas.com/mdb" target="_blank" rel="external">LMDB</a> are some light-weight databases supported by Caffe. You surely don’t want to read in a lot of pictures from a lot of folders, and that’s why these databases are used.</p>
+<h1 id="CUDA,_Boost,_OpenCV">CUDA, Boost, OpenCV</h1><p>There’s not much to say about these famous libraries.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-22T16:00:00.000Z"><a href="/2015/09/23/hello-world/">2015-09-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/23/hello-world/">Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:koolmaleon.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Caffe-Hacking-Diary/">Caffe-Hacking Diary</a><small>1</small></li>
+  
+    <li><a href="/categories/Terminal-Life/">Terminal Life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Caffe/">Caffe</a><small>1</small></li>
+  
+    <li><a href="/tags/Deep-Learning/">Deep Learning</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/Terminal/">Terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/Vim/">Vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Koolma Leon
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

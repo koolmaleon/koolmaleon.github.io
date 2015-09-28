@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Caffe-Hacking Diary: Dependencies | Koolmaleon</title>
+  <meta name="author" content="Koolma Leon">
+  
+  <meta name="description" content="Since I started working in the field of deep learning this summer, I’ve been using the most famous deep learning framework – Caffe. However, due to th">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Caffe-Hacking Diary: Dependencies"/>
+  <meta property="og:site_name" content="Koolmaleon"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Koolmaleon" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Koolmaleon</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-23T08:00:01.000Z"><a href="/2015/09/23/Caffe-Hacking-Diary-Dependencies/">2015-09-23</a></time>
+      
+      
+  
+    <h1 class="title">Caffe-Hacking Diary: Dependencies</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><i>Since I started working in the field of deep learning this summer, I’ve been using the most famous deep learning framework – <a href="http://caffe.berkeleyvision.org" target="_blank" rel="external">Caffe</a>. However, due to the urgent needs of developing, I didn’t have time to thoroughly read the docs and source codes, hence didn’t have a thorough understanding of the framework. Recently I started to hack into Caffe and create some custom layers. Without enough understanding of the framework, I think it’s hard to write efficient and bug-less code, so I decided to learn Caffe as if I haven’t learned it at all. This Diary will be the notes for my learning.</i></p>
+<p>Caffe depends on several libraries, with some of which I’m not very familiar. Therefore, I’ll put down some notes on these libraries for future reference.</p>
+<h1 id="BLAS">BLAS</h1><p><a href="http://www.netlib.org/blas" target="_blank" rel="external">BLAS</a>(Basic Linear Algebra Subprograms) is a free-licensed open-source project started from I-don’t-know-when. It provides a lot of handful functions for basic linear algebra operations, for example, inner product, matrix multiplication, but nothing more complex. There’re three versions of BLAS you can use in Caffe: <a href="http://math-atlas.sourceforge.net" target="_blank" rel="external">ATLAS</a>, <a href="http://www.openblas.net" target="_blank" rel="external">OpenBLAS</a> and <a href="https://software.intel.com/en-us/intel-mkl" target="_blank" rel="external">Intel MKL</a>. I did some test on the ATLAS shipped with Ubuntu LTS 14.04, and its performance was suprisingly far <b>worse</b> than for-loop with <code>-O2</code> compiling flag, so I don’t really understand why Caffe uses it.</p>
+<h1 id="Protocol_Buffer">Protocol Buffer</h1><p><a href="http://developers.google.com/protocol-buffers/" target="_blank" rel="external"><code>protobuf</code></a> is developed by Google, and can be seen as a substitute for <code>json</code> or <code>xml</code> in C++. Neural networks are defined in this format in Caffe models.</p>
+<h1 id="GLOG">GLOG</h1><p><a href="http://code.google.com/p/google-glog/" target="_blank" rel="external">GLOG</a> is a logging library for C++, developed by Google. The following codes you see in Caffe’s source code: <code>LOG(INFO)</code>, <code>CHECK_EQ</code>, are GLOG functions. Notably, you may see <code>GLOG_logtostderr=1</code> in front of a command line in some shell scripts, which is actually setting environment variables for GLOG before the program starts.</p>
+<h1 id="GFlags">GFlags</h1><p><a href="http://gflags.github.io/gflags" target="_blank" rel="external">GFlags</a> is <b>again</b> developed by Google, and is said to be a better substitute for <code>getopt()</code>.</p>
+<h1 id="HDF5,_LevelDB,_Snappy,_LMDB">HDF5, LevelDB, Snappy, LMDB</h1><p><a href="http://www.hdfgroup.org/HDF5" target="_blank" rel="external">HDF5</a>, <a href="http://leveldb.org" target="_blank" rel="external">LevelDB</a>, <a href="http://google.github.io/snappy" target="_blank" rel="external">Snappy</a>, and <a href="http://symas.com/mdb" target="_blank" rel="external">LMDB</a> are some light-weight databases supported by Caffe. You surely don’t want to read in a lot of pictures from a lot of folders, and that’s why these databases are used.</p>
+<h1 id="CUDA,_Boost,_OpenCV">CUDA, Boost, OpenCV</h1><p>There’s not much to say about these famous libraries.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Caffe-Hacking-Diary/">Caffe-Hacking Diary</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Caffe/">Caffe</a>, <a href="/tags/Deep-Learning/">Deep Learning</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://koolmaleon.github.io/2015/09/23/Caffe-Hacking-Diary-Dependencies/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:koolmaleon.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Caffe-Hacking-Diary/">Caffe-Hacking Diary</a><small>1</small></li>
+  
+    <li><a href="/categories/Terminal-Life/">Terminal Life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Caffe/">Caffe</a><small>1</small></li>
+  
+    <li><a href="/tags/Deep-Learning/">Deep Learning</a><small>1</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/Terminal/">Terminal</a><small>1</small></li>
+  
+    <li><a href="/tags/Vim/">Vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Koolma Leon
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
